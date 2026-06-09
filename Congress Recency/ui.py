@@ -28,8 +28,8 @@ class RecencyTrackerApp:
         """Display the initial role selection menu."""
         menu_column = ft.Column(
             [
-                ft.Text("Welcome to Recency Tracker", size=28, weight="bold"),
-                ft.Text("Please select your role:", size=16),
+                ft.Text("Welcome to Order In The Court", size=40, weight="bold"),
+                ft.Text("Please select your role:", size=20),
                 ft.ElevatedButton(
                     "P.O. (Presiding Officer)",
                     on_click=lambda e: self.set_role("po"),
