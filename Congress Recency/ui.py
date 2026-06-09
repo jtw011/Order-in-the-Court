@@ -30,27 +30,23 @@ class RecencyTrackerApp:
             [
                 ft.Text("Welcome to Recency Tracker", size=28, weight="bold"),
                 ft.Text("Please select your role:", size=16),
-                ft.SizedBox(height=20),
                 ft.ElevatedButton(
                     "P.O. (Presiding Officer)",
                     on_click=lambda e: self.set_role("po"),
                     width=300,
                     height=60,
-                    style=ft.ButtonStyle(text_style=ft.TextStyle(size=14))
                 ),
-                ft.SizedBox(height=15),
                 ft.ElevatedButton(
                     "Speaker",
                     on_click=lambda e: self.set_role("speaker"),
                     width=300,
                     height=60,
-                    style=ft.ButtonStyle(text_style=ft.TextStyle(size=14))
                 ),
             ],
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
             expand=True,
-            spacing=15,
+            spacing=20,
         )
         
         self.page.add(menu_column)
