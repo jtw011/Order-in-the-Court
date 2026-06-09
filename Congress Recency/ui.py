@@ -86,7 +86,8 @@ class RecencyTrackerApp:
                 ),
             ],
             spacing=10,
-            visible=True
+            visible=True,
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER
         )
         
         # Person entry section
@@ -106,7 +107,8 @@ class RecencyTrackerApp:
                 ),
             ],
             spacing=10,
-            visible=True
+            visible=True,
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER
         )
         
         # Lists display section
@@ -142,6 +144,7 @@ class RecencyTrackerApp:
             spacing=15,
             scroll=ft.ScrollMode.AUTO,
             expand=True,
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER
         )
         
         self.page.add(main_column)
@@ -158,6 +161,7 @@ class RecencyTrackerApp:
                 self.round_info_display,
             ],
             spacing=10,
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER
         )
         
         # Lists display section (read-only)
@@ -169,7 +173,8 @@ class RecencyTrackerApp:
                 self.lists_container_speaker,
             ],
             spacing=10,
-            expand=True
+            expand=True,
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER
         )
         
         # Logout button
@@ -191,6 +196,7 @@ class RecencyTrackerApp:
             spacing=15,
             scroll=ft.ScrollMode.AUTO,
             expand=True,
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER
         )
         
         self.page.add(main_column)
