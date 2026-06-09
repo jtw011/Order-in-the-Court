@@ -48,13 +48,13 @@ class RecencyTrackerApp:
             spacing=20,
         )
         
-        centered_container = ft.Container(
-            content=menu_column,
-            alignment=ft.alignment.center,
-            expand=True
+        centered_row = ft.Row(
+            [menu_column],
+            alignment=ft.MainAxisAlignment.CENTER,
+            expand=True,
         )
         
-        self.page.add(centered_container)
+        self.page.add(centered_row)
     
     def set_role(self, role):
         """Set the user role and show appropriate interface."""
@@ -151,14 +151,13 @@ class RecencyTrackerApp:
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
         )
         
-        centered_container = ft.Container(
-            content=main_column,
-            alignment=ft.alignment.top_center,
+        centered_row = ft.Row(
+            [main_column],
+            alignment=ft.MainAxisAlignment.CENTER,
             expand=True,
-            padding=20,
         )
         
-        self.page.add(centered_container)
+        self.page.add(centered_row)
         self.refresh_lists_display()
     
     def build_speaker_interface(self):
@@ -209,14 +208,13 @@ class RecencyTrackerApp:
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
         )
         
-        centered_container = ft.Container(
-            content=main_column,
-            alignment=ft.alignment.top_center,
+        centered_row = ft.Row(
+            [main_column],
+            alignment=ft.MainAxisAlignment.CENTER,
             expand=True,
-            padding=20,
         )
         
-        self.page.add(centered_container)
+        self.page.add(centered_row)
         self.refresh_speaker_display()
     
     def save_po_info(self, e):
