@@ -2,7 +2,25 @@
 # Store lists in a list of lists, where each inner list represents a round
 all_lists = [[]]  # Start with one empty list for initial names
 
-# The logic for where the PO enters the round information
+# Add person to the first list
+def add_person_to_list(person_name):
+    """Add a person to the first list."""
+    if person_name:
+        all_lists[0].insert(0, person_name)
+        return True
+    return False
+
+# Get viewer information as structured data
+def get_viewer_info(name, round_name, room_number):
+    """Return viewer information as a dictionary instead of printing."""
+    return {
+        'po_name': name,
+        'round_name': round_name,
+        'room_number': room_number,
+        'lists': all_lists
+    }
+
+# Legacy CLI functions (kept for backwards compatibility)
 def po():
     name = input("Enter the P.O's name: ")
     round_name = input("Enter the round name: ")
@@ -18,7 +36,6 @@ def po():
 
     return name, round_name, room_number
 
-# The logic for viewers information
 def viewer(name, round_name, room_number):
     print("------------------------------------")
     print(f"\nViewer Information")
