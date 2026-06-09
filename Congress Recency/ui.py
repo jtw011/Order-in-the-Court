@@ -167,10 +167,9 @@ class RecencyTrackerApp:
         for person_index, person in enumerate(current_list):
             person_row = ft.Row(
                 [
-                    ft.Text(f"{person_index}: {person}", expand=True, size=13),
+                    ft.Text(f"{person_index + 1}: {person}", expand=True, size=13),
                     ft.ElevatedButton(
                         "Move →",
-                        size=ft.ButtonSize.SMALL,
                         on_click=self.move_person_handler(list_index, person_index)
                     ),
                 ],
@@ -182,7 +181,7 @@ class RecencyTrackerApp:
             content=ft.Container(
                 content=ft.Column(
                     [
-                        ft.Text(f"List {list_index}", size=14, weight="bold", color="blue"),
+                        ft.Text(f"List {list_index + 1}", size=14, weight="bold", color="blue"),
                         ft.Divider(height=5),
                         list_items,
                     ],
