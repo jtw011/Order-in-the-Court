@@ -20,38 +20,6 @@ def get_viewer_info(name, round_name, room_number):
         'lists': all_lists
     }
 
-# Legacy CLI functions (kept for backwards compatibility)
-def po():
-    name = input("Enter the P.O's name: ")
-    round_name = input("Enter the round name: ")
-    room_number = input("Enter the room number: ")
-    
-    while True:
-        person = input("Enter names (type quit to end): ")
-        if person.lower() == 'quit':
-            print(f"\nInfo has been added. Thank you!")
-            break
-        else:
-            all_lists[0].insert(0, person)
-
-    return name, round_name, room_number
-
-def viewer(name, round_name, room_number):
-    print("------------------------------------")
-    print(f"\nViewer Information")
-    print(f"P.O: {name}")
-    print(f"Round Name: {round_name}")
-    print(f"Room Number: {room_number}")
-    
-    # Print all non-empty lists
-    for list_num, current_list in enumerate(all_lists):
-        if current_list:  # Only print non-empty lists
-            print(f"\nList {list_num}: ")
-            for index, item in enumerate(current_list):
-                print(f"{index}: {item}")
-    print("------------------------------------")
-    print()
-
 # Logic for moving people over to the next list
 def move_to_next_list(source_list_index, person_index):
     if 0 <= source_list_index < len(all_lists) and 0 <= person_index < len(all_lists[source_list_index]):
