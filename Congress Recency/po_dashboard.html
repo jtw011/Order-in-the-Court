@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P.O. Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/custom.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full p-8 bg-white rounded-lg shadow">
+    <h1 class="text-2xl font-bold mb-4">P.O. Dashboard</h1>
+    <form id="create-session" class="space-y-4">
+      <div>
+        <label class="block text-sm">P.O. Name</label>
+        <input name="po_name" class="input" />
+      </div>
+      <div>
+        <label class="block text-sm">Round Name</label>
+        <input name="round_name" class="input" />
+      </div>
+      <div>
+        <label class="block text-sm">Room Number</label>
+        <input name="room_number" class="input" />
+      </div>
+      <div class="flex gap-2">
+        <button type="button" id="create-btn" class="btn">Create Session</button>
+        <a href="/" class="btn btn-outline">Back</a>
+      </div>
+    </form>
+
+    <div id="session-info" class="mt-6"></div>
+  </div>
+
+  <script>
+    document.getElementById('create-btn').addEventListener('click', async ()=>{
+      const form = document.getElementById('create-session');
+      const data = Object.fromEntries(new FormData(form).entries());
+      const res = await fetch('/api/create-session', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(data)
+      });
+      const j = await res.json();
+      if (j.success) {
+        document.getElementById('session-info').innerHTML = `<div class="p-4 bg-green-50 rounded">Session created. Code: <strong>${j.code}</strong><br><a href='/po?session_id=${j.session_id}'>Open dashboard</a></div>`;
+      } else {
+        document.getElementById('session-info').innerText = 'Error creating session.'
+      }
+    });
+  </script>
+</body>
+</html>
