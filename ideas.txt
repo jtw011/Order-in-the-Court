@@ -1,0 +1,2 @@
+1. make it flask with tailwind css and make it hostable online somehow 
+2. look at different ways to host
