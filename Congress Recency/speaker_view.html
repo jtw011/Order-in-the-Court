@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Speaker View</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <link rel="stylesheet" href="/custom.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+  <div class="max-w-3xl w-full p-6 bg-white rounded-lg shadow">
+    <h2 class="text-xl font-bold">Session: {{ session.round_name }}</h2>
+    <p>P.O.: {{ session.po_name }} | Room: {{ session.room_number }} | Code: {{ session.code if session.code else '' }}</p>
+
+    <div id="players" class="mt-4"></div>
+  </div>
+
+<script>
+  const socket = io();
+  const sessionCode = '{{ code }}';
+  const playerName = '{{ name }}';
+
+  async function joinSession(){
+    const res = await fetch('/api/join-session', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({code: sessionCode, name: playerName})});
+    const j = await res.json();
+    if (!j.success) { document.getElementById('players').innerText = 'Failed to join'; return; }
+    const session_id = j.session_id;
+    socket.emit('join', {session_id});
+    socket.on('players_updated', data=>{
+      renderPlayers(data.players);
+    });
+
+    const pl = await fetch('/api/session/' + session_id + '/players');
+    const pj = await pl.json();
+    renderPlayers(pj.players);
+  }
+
+  function renderPlayers(players){
+    const cont = document.getElementById('players');
+    cont.innerHTML = '';
+    const lists = Object.keys(players).sort((a,b)=>a-b);
+    lists.forEach(idx=>{
+      const box = document.createElement('div');
+      box.className = 'p-3 bg-gray-100 rounded mb-3';
+      box.innerHTML = `<strong>List ${parseInt(idx)+1}</strong>`;
+      players[idx].forEach((p,i)=>{
+        const el = document.createElement('div');
+        el.className = 'mt-2';
+        el.innerText = `${i+1}: ${p.name}`;
+        box.appendChild(el);
+      });
+      cont.appendChild(box);
+    });
+  }
+
+  joinSession();
+</script>
+</body>
+</html>
